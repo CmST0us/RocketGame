@@ -12,8 +12,22 @@ import SceneKit
 
 class GameViewController: UIViewController {
 
+    lazy var joyStick: RocketAttitudeJoyStick = {
+        let joy = RocketAttitudeJoyStick()
+        joy.translatesAutoresizingMaskIntoConstraints = false
+        return joy
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.addSubview(joyStick)
+        joyStick.snp.makeConstraints { (make) in
+            make.left.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(100)
+            make.width.equalTo(100)
+        }
         
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
