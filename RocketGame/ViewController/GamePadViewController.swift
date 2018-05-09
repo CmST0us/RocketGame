@@ -14,22 +14,18 @@ class GamePadViewController: UIViewController {
     // MARK: Public Member
     
     // MARK: Private Member
-    private let kFps = 30.0
-    private var spriteView: SKView {
+    private let kFps = 144.0
+    
+    private var lastRenderTime: TimeInterval = 0
+    
+    private var skView: SKView {
         return self.view as! SKView
     }
+
     private var attitudeJoyStickView: RocketAttitudeJoyStick!
     
     private var rocketAttitude = RocketAttitude()
     
-    private var gameLoopTimer: Timer!
-    
-    private lazy var rocketView: UIImageView = {
-        let v = UIImageView(frame: CGRect(x: 0, y: 0, width: 58, height: 52))
-        v.image = #imageLiteral(resourceName: "rocket")
-        self.view.addSubview(v)
-        return v
-    }()
     
     // MARK: Public Method
     
@@ -58,74 +54,6 @@ extension GamePadViewController {
     }
 }
 
-// MARK: - GameLoop
-extension GamePadViewController {
-    
-    private func checkJoyStickStateAndChangeAttitude() {
-        if self.attitudeJoyStickView.isUpButtonDown {
-            rocketAttitude.power = 0.1
-        } else {
-            rocketAttitude.power = 0
-        }
-        
-        if self.attitudeJoyStickView.isLeftButtonDown {
-            rocketAttitude.ta = -rad(CGFloat(5))
-            return
-        } else {
-            rocketAttitude.ta = 0
-        }
-        
-        if self.attitudeJoyStickView.isRightButtonDown {
-            rocketAttitude.ta = rad(CGFloat(5))
-            return
-        } else {
-            rocketAttitude.ta = 0
-        }
-    }
-    
-    private func updateRocketAttitudeModel() {
-        rocketAttitude.direction = rocketAttitude.direction + rocketAttitude.ta
-        
-        self.rocketAttitude.vx += rocketAttitude.power * sin(rocketAttitude.direction)
-        self.rocketAttitude.vy += rocketAttitude.power * -cos(rocketAttitude.direction)
-        
-        self.rocketAttitude.x += self.rocketAttitude.vx
-        self.rocketAttitude.y += self.rocketAttitude.vy
-        
-        
-        if rocketAttitude.x > Double(self.view.frame.size.width) {
-            rocketAttitude.x = 0
-        }
-        
-        if rocketAttitude.x < 0 {
-            rocketAttitude.x = Double(self.view.frame.size.width)
-        }
-        
-        if rocketAttitude.y > Double(self.view.frame.size.height) {
-            rocketAttitude.y = 0
-        }
-        
-        if rocketAttitude.y < 0 {
-            rocketAttitude.y = Double(self.view.frame.size.height)
-        }
-        
-    }
-    
-    private func animateRocket() {
-        animate(0.1) {
-            rocketView.layer.position = CGPoint(x: rocketAttitude.x, y: rocketAttitude.y)
-            rocketView.layer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(rocketAttitude.direction)))
-        }
-    }
-    
-    
-    private func gameLoop() {
-        checkJoyStickStateAndChangeAttitude()
-        updateRocketAttitudeModel()
-        animateRocket()
-    }
-    
-}
 // MARK: - Life Cycle Method
 extension GamePadViewController {
     
@@ -133,10 +61,22 @@ extension GamePadViewController {
         super.viewDidLoad()
         
         setupAttitudeJoyStickView()
-        // 60 fps
-        self.gameLoopTimer = Timer.scheduledTimer(withTimeInterval: 1.0 / kFps, repeats: true, block: { [weak self] (timer) in
-            self?.gameLoop()
-        })
+        
+        self.skView.showsFPS = true
+        self.skView.showsFields = true
+        
+        // 如果设置了Delegate就把游戏逻辑移交给了ViewController
+        // self.skView.scene?.delegate = self
+        
+        self.skView.delegate = self
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if let secne = self.skView.scene as? GameScene {
+            secne.attitudeJoyStickView = self.attitudeJoyStickView
+        }
         
     }
     
@@ -150,15 +90,23 @@ extension GamePadViewController {
 // MARK: - StoryBoard Method
 extension GamePadViewController {
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
+// MARK: - SKSceneDelegate
+extension GamePadViewController: SKSceneDelegate {
+    func update(_ currentTime: TimeInterval, for scene: SKScene) {
+        
+    }
+}
+
+
+// MARK: - SKViewDelegate
+extension GamePadViewController: SKViewDelegate {
+    func view(_ view: SKView, shouldRenderAtTime time: TimeInterval) -> Bool {
+        if time - lastRenderTime >= 1 / kFps {
+            lastRenderTime = time
+            return true
+        }
+        return false
+    }
+}

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4F42A577209B680300352231 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F42A576209B680300352231 /* AppDelegate.swift */; };
-		4F42A579209B680300352231 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F42A578209B680300352231 /* art.scnassets */; };
 		4F42A57E209B680300352231 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F42A57C209B680300352231 /* Main.storyboard */; };
 		4F42A580209B680300352231 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F42A57F209B680300352231 /* Assets.xcassets */; };
 		4F42A583209B680300352231 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F42A581209B680300352231 /* LaunchScreen.storyboard */; };
@@ -22,13 +21,14 @@
 		4F92541620A078E400DC4EE0 /* RocketAttitude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F92541520A078E400DC4EE0 /* RocketAttitude.swift */; };
 		4F92541820A07A3F00DC4EE0 /* RocketGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F92541720A07A3F00DC4EE0 /* RocketGameConfig.swift */; };
 		4F92541A20A07C2600DC4EE0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F92541920A07C2600DC4EE0 /* Utils.swift */; };
+		4FDDB17E20A2F52100F31B58 /* MyScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4FDDB17D20A2F52100F31B58 /* MyScene.sks */; };
+		4FDDB18020A2F5AF00F31B58 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDB17F20A2F5AF00F31B58 /* GameScene.swift */; };
 		F22C2A203B4AE89A99EC3F87 /* Pods_RocketGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31880816B73C78A9F538D1C /* Pods_RocketGame.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4F42A573209B680300352231 /* RocketGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F42A576209B680300352231 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4F42A578209B680300352231 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		4F42A57A209B680300352231 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4F42A57F209B680300352231 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F42A592209B69D900352231 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
@@ -47,6 +47,8 @@
 		4F92541720A07A3F00DC4EE0 /* RocketGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketGameConfig.swift; sourceTree = "<group>"; };
 		4F92541920A07C2600DC4EE0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4F92541B20A07F3700DC4EE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4FDDB17D20A2F52100F31B58 /* MyScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyScene.sks; sourceTree = "<group>"; };
+		4FDDB17F20A2F5AF00F31B58 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		9107D8F51B1423A818D87073 /* Pods-RocketGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-RocketGame/Pods-RocketGame.release.xcconfig"; sourceTree = "<group>"; };
 		EE3F47F161C4797867B58452 /* Pods-RocketGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RocketGame/Pods-RocketGame.debug.xcconfig"; sourceTree = "<group>"; };
 		F31880816B73C78A9F538D1C /* Pods_RocketGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RocketGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,9 +121,9 @@
 			children = (
 				4F42A58E209B68F700352231 /* StoryBoard */,
 				4F42A57F209B680300352231 /* Assets.xcassets */,
-				4F42A578209B680300352231 /* art.scnassets */,
 				4F42A59C209B6AAF00352231 /* Localizable.strings */,
 				4F42A5A8209B6E9000352231 /* InfoPlist.strings */,
+				4FDDB17D20A2F52100F31B58 /* MyScene.sks */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -158,6 +160,7 @@
 			children = (
 				4F92541520A078E400DC4EE0 /* RocketAttitude.swift */,
 				4F92541720A07A3F00DC4EE0 /* RocketGameConfig.swift */,
+				4FDDB17F20A2F5AF00F31B58 /* GameScene.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,10 +245,10 @@
 			files = (
 				4F42A59A209B6AAF00352231 /* Localizable.strings in Resources */,
 				4F42A5A6209B6E9000352231 /* InfoPlist.strings in Resources */,
-				4F42A579209B680300352231 /* art.scnassets in Resources */,
 				4F42A5A3209B6E6300352231 /* Info.plist in Resources */,
 				4F42A583209B680300352231 /* LaunchScreen.storyboard in Resources */,
 				4F42A580209B680300352231 /* Assets.xcassets in Resources */,
+				4FDDB17E20A2F52100F31B58 /* MyScene.sks in Resources */,
 				4F42A57E209B680300352231 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +317,7 @@
 				4F42A5AB209B7CCA00352231 /* RocketJoyStick.swift in Sources */,
 				4F92541820A07A3F00DC4EE0 /* RocketGameConfig.swift in Sources */,
 				4F92541A20A07C2600DC4EE0 /* Utils.swift in Sources */,
+				4FDDB18020A2F5AF00F31B58 /* GameScene.swift in Sources */,
 				4F92541620A078E400DC4EE0 /* RocketAttitude.swift in Sources */,
 				4F42A577209B680300352231 /* AppDelegate.swift in Sources */,
 				4F92541420A075C000DC4EE0 /* UIButton+Block.swift in Sources */,
