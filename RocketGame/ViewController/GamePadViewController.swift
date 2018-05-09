@@ -83,7 +83,7 @@ extension GamePadViewController {
         }
     }
     
-    private func moveRocket() {
+    private func updateRocketAttitudeModel() {
         rocketAttitude.direction = rocketAttitude.direction + rocketAttitude.ta
         
         self.rocketAttitude.vx += rocketAttitude.power * sin(rocketAttitude.direction)
@@ -121,7 +121,7 @@ extension GamePadViewController {
     
     private func gameLoop() {
         checkJoyStickStateAndChangeAttitude()
-        moveRocket()
+        updateRocketAttitudeModel()
         animateRocket()
     }
     
